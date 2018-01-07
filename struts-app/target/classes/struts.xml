@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="false"></constant>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.action.extention" value="" />
+
+	<package name="appPackage" namespace="/" extends="struts-default">
+
+		<action name="welcome" class="com.app.action.user.HomePageAction" method="display">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="timer" />
+			<result name="success">/home/welcome.jsp</result>
+		</action>
+
+		<action name="doLogin" class="com.app.action.user.LoginAction" method="doLogin">
+			<result name="input">/home/welcome.jsp</result>
+			<result name="success" type="redirect">/home/userHomePage.jsp</result>
+		</action>
+
+		<action name="registerUser" class="com.app.action.user.HomePageAction" method="display">
+			<result name="success">/home/userRegistration.jsp</result>
+		</action>
+
+		<action name="doRegister" class="com.app.action.user.UserRegisterAction" method="doRegister">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="timer" />
+			<result name="input">/home/userRegistration.jsp</result>
+			<result name="success" type="redirect">welcome</result>
+		</action>
+
+	</package>
+
+
+	<bean name="userService" type="com.app.service.user.UserService" class="com.app.service.user.UserServiceImpl"></bean>
+	<bean name="nextKeyGenService" type="com.app.common.config.NextKeyGenService" class="com.app.common.config.NextKeyGenServiceImpl"></bean>
+	<bean name="hibernateService" type="com.app.common.config.HibernateService" class="com.app.common.config.HibernateServiceImpl"></bean>
+</struts>
