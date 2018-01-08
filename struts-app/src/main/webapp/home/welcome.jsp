@@ -6,8 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<s:head />
 </head>
 <body>
+	<s:actionerror />
 	<s:form action="doLogin">
 		<table>
 			<tr>
@@ -17,14 +19,14 @@
 
 			<tr>
 				<s:label value="Password" name="passwordlbl"></s:label>
-				<td><s:textfield id="password" name="password"></s:textfield></td>
+				<td><s:password id="password" name="password"></s:password></td>
 			</tr>
 
 			<tr>
 				<td><s:submit value="Login" /></td>
 			</tr>
-				<tr>
-				<td><s:a action="registerUser">registerUser</s:a> </td>
+			<tr>
+				<td><s:a action="registerUser">registerUser</s:a></td>
 			</tr>
 		</table>
 	</s:form>

@@ -25,6 +25,7 @@ public class LoginAction extends AppActionSupport {
 		UserMaster userMaster = userService.doLogin(userId, password);
 		if (Objects.isNull(userMaster)) {
 			addActionError("User Id or Password not match.");
+			return INPUT;
 		} else {
 			HttpSession session = getSession();
 			session.setAttribute(SESSION_USER_INFO, userMaster);
