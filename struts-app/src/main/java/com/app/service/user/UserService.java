@@ -11,4 +11,6 @@ public interface UserService {
 	public void deleteUser(Integer userIndex);
 
 	public void updateUser(UserMaster userMaster);
+
+	public UserMaster doLogin(String userId, String password);
 }

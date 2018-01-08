@@ -1,5 +1,7 @@
 package com.app.action.user;
 
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+
 import com.app.common.config.AppActionSupport;
 import com.app.domain.model.user.UserMaster;
 import com.app.service.user.UserService;
@@ -20,6 +22,7 @@ public class UserRegisterAction extends AppActionSupport {
 	private String password;
 	private String emailAddress;
 	private String userName;
+	private String mobileNo;
 
 	public String display() {
 		return SUCCESS;
@@ -28,7 +31,7 @@ public class UserRegisterAction extends AppActionSupport {
 	public String doRegister() throws Exception {
 
 		try {
-			userService.createUser(new UserMaster(userId, password, emailAddress, userName));
+			userService.createUser(new UserMaster(userId, password, emailAddress, userName, mobileNo));
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -38,14 +41,16 @@ public class UserRegisterAction extends AppActionSupport {
 
 	@Override
 	public void validate() {
-		if (userId == null || userId.length() == 0)
+		if (isNotEmpty(userId))
 			addFieldError("userId", "User id can not be null");
-		if (password == null || password.length() == 0)
+		if (isNotEmpty(password))
 			addFieldError("password", "password can not be null");
-		if (emailAddress == null || emailAddress.length() == 0)
+		if (isNotEmpty(emailAddress))
 			addFieldError("emailAddress", "emailAddress can not be null");
-		if (userName == null || userName.length() == 0)
-			addFieldError(userName, "userName can not be null");
+		if (isNotEmpty(userName))
+			addFieldError("userName", "userName can not be null");
+		if (isNotEmpty(mobileNo))
+			addFieldError("mobileNo", "mobileNo can not be null");
 	}
 
 	public Integer getUserIndex() {

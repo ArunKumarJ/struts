@@ -21,16 +21,18 @@ public class UserMaster implements Serializable {
 	private String password;
 	private String emailAddress;
 	private String userName;
+	private String mobileNo;
 
 	public UserMaster() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserMaster(String userId,String password, String emailAddress, String userName) {
+	public UserMaster(String userId, String password, String emailAddress, String userName, String mobileNo) {
 		this.userId = userId;
 		this.password = password;
 		this.emailAddress = emailAddress;
 		this.userName = userName;
+		this.mobileNo = mobileNo;
 	}
 
 	public Integer getUserIndex() {
@@ -71,6 +73,14 @@ public class UserMaster implements Serializable {
 
 	public String getUserName() {
 		return userName;
+	}
+
+	public String getMobileNo() {
+		return mobileNo;
+	}
+
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
 	}
 
 }

@@ -2,6 +2,7 @@ package com.app.common.config;
 
 import java.io.Serializable;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -48,6 +49,11 @@ public class HibernateServiceImpl implements HibernateService, ServletContextLis
 			session.close();
 			sessionFactory.close();
 		}
+	}
+
+	@Override
+	public CriteriaBuilder getCriteriaBuilder() {
+		return getSession().getCriteriaBuilder();
 	}
 
 }

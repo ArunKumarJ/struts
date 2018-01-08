@@ -1,5 +1,12 @@
 package com.app.service.user;
 
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
 
 import com.app.common.config.HibernateService;
@@ -47,6 +54,31 @@ public class UserServiceImpl implements UserService {
 	public void updateUser(UserMaster userMaster) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public UserMaster doLogin(String userId, String password) {
+		UserMaster userMaster = null;
+		CriteriaBuilder cb = hibernateService.getCriteriaBuilder();
+		CriteriaQuery<UserMaster> query = cb.createQuery(UserMaster.class);
+		Root<UserMaster> root = query.from(UserMaster.class);
+		query.select(root);
+
+		ParameterExpression<String> userIdParam = cb.parameter(String.class);
+		ParameterExpression<String> pwdParam = cb.parameter(String.class);
+
+		query.where(cb.and(cb.equal(root.get("userId"), userIdParam), cb.equal(root.get("password"), pwdParam)));
+
+		TypedQuery<UserMaster> typedQuery = hibernateService.getSession().createQuery(query);
+		typedQuery.setParameter(userIdParam, userId);
+		typedQuery.setParameter(pwdParam, password);
+
+		try {
+			userMaster = typedQuery.getSingleResult();
+		} catch (NoResultException e) {
+			// ignore ;)
+		}
+		return userMaster;
 	}
 
 }

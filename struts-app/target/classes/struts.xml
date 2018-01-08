@@ -6,19 +6,21 @@
 <struts>
 	<constant name="struts.devMode" value="false"></constant>
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
-	<constant name="struts.action.extention" value="" />
+	<constant name="struts.action.extension" value="" />
 
 	<package name="appPackage" namespace="/" extends="struts-default">
 
 		<action name="welcome" class="com.app.action.user.HomePageAction" method="display">
-			<interceptor-ref name="defaultStack" />
-			<interceptor-ref name="timer" />
 			<result name="success">/home/welcome.jsp</result>
 		</action>
 
 		<action name="doLogin" class="com.app.action.user.LoginAction" method="doLogin">
 			<result name="input">/home/welcome.jsp</result>
-			<result name="success" type="redirect">/home/userHomePage.jsp</result>
+			<result name="success" type="redirect">userHomePage</result>
+		</action>
+
+		<action name="userHomePage" class="com.app.action.user.HomePageAction" method="display">
+			<result name="success">/home/userHomePage.jsp</result>
 		</action>
 
 		<action name="registerUser" class="com.app.action.user.HomePageAction" method="display">
@@ -26,8 +28,6 @@
 		</action>
 
 		<action name="doRegister" class="com.app.action.user.UserRegisterAction" method="doRegister">
-			<interceptor-ref name="defaultStack" />
-			<interceptor-ref name="timer" />
 			<result name="input">/home/userRegistration.jsp</result>
 			<result name="success" type="redirect">welcome</result>
 		</action>

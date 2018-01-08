@@ -15,13 +15,15 @@ import org.codehaus.jackson.map.ObjectMapper;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 
-public class AppActionSupport extends ActionSupport implements ServletRequestAware, SessionAware, ApplicationAware, HttpParametersAware, Preparable {
+public class AppActionSupport extends ActionSupport
+		implements ServletRequestAware, SessionAware, ApplicationAware, HttpParametersAware, Preparable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7360324781039212366L;
 
+	public static final String SESSION_USER_INFO = "SESSION_USER_INFO";
 	private HttpSession session;
 	private HttpServletRequest request;
 	protected ObjectMapper mapper = new ObjectMapper();
