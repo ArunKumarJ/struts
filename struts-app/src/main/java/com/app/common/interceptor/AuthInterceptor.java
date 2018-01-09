@@ -13,7 +13,7 @@ public class AuthInterceptor extends AbstractInterceptor {
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
 		// TODO Auto-generated method stub
-		return null; 
+		return null;
 	}
 
 }
