@@ -10,7 +10,27 @@
 
 	<package name="appPackage" namespace="/" extends="struts-default">
 
-		<action name="welcome" class="com.app.action.user.HomePageAction" method="display">
+		<interceptors>
+			<interceptor name="authInterceptor" class="com.app.common.interceptor.AuthInterceptor" />
+			<interceptor name="hibernateSessionInterceptor" class="com.app.common.interceptor.HibernateSessionInterceptor" />
+
+			<interceptor-stack name="strutsApp">
+				<interceptor-ref name="authInterceptor">
+					<param name="excludeMethods">doRegister,registerUser,welcome,doLogin</param>  
+				</interceptor-ref>
+				<interceptor-ref name="hibernateSessionInterceptor" />
+				<interceptor-ref name="timer" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="strutsApp" />
+		
+		<global-results>
+			<result name="login" type="redirect">welcome</result>
+		</global-results>
+
+		<action name="welcome" class="com.app.action.user.HomePageAction" method="welcome">
 			<result name="success">/home/welcome.jsp</result>
 		</action>
 
@@ -19,11 +39,11 @@
 			<result name="success" type="redirect">userHomePage</result>
 		</action>
 
-		<action name="userHomePage" class="com.app.action.user.HomePageAction" method="display">
+		<action name="userHomePage" class="com.app.action.user.UserHomeAction" method="welcome">
 			<result name="success">/home/userHomePage.jsp</result>
 		</action>
 
-		<action name="registerUser" class="com.app.action.user.HomePageAction" method="display">
+		<action name="registerUser" class="com.app.action.user.HomePageAction" method="welcome">
 			<result name="success">/home/userRegistration.jsp</result>
 		</action>
 

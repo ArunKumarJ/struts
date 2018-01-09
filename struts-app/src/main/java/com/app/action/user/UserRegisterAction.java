@@ -1,6 +1,6 @@
 package com.app.action.user;
 
-import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 import com.app.common.config.AppActionSupport;
 import com.app.domain.model.user.UserMaster;
@@ -41,15 +41,15 @@ public class UserRegisterAction extends AppActionSupport {
 
 	@Override
 	public void validate() {
-		if (isNotEmpty(userId))
+		if (isEmpty(userId))
 			addFieldError("userId", "User id can not be null");
-		if (isNotEmpty(password))
+		if (isEmpty(password))
 			addFieldError("password", "password can not be null");
-		if (isNotEmpty(emailAddress))
+		if (isEmpty(emailAddress))
 			addFieldError("emailAddress", "emailAddress can not be null");
-		if (isNotEmpty(userName))
+		if (isEmpty(userName))
 			addFieldError("userName", "userName can not be null");
-		if (isNotEmpty(mobileNo))
+		if (isEmpty(mobileNo))
 			addFieldError("mobileNo", "mobileNo can not be null");
 	}
 
@@ -99,6 +99,14 @@ public class UserRegisterAction extends AppActionSupport {
 
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+	}
+
+	public String getMobileNo() {
+		return mobileNo;
+	}
+
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
 	}
 
 }

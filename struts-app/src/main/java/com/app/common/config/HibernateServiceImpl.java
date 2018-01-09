@@ -45,9 +45,20 @@ public class HibernateServiceImpl implements HibernateService, ServletContextLis
 
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
-		if (session != null || session.isOpen()) {
+		if (session != null && session.isOpen()) {
 			session.close();
+
+		}
+		if (sessionFactory != null && sessionFactory.isOpen()) {
 			sessionFactory.close();
+		}
+	}
+
+	@Override
+	public void closeSession() {
+		if (session != null && session.isOpen()) {
+			session.close();
+
 		}
 	}
 

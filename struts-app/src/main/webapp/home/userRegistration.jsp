@@ -22,7 +22,7 @@
 
 			<tr>
 				<s:label value="Password" name="passwordlbl"></s:label>
-				<td><s:textfield id="password" name="password"></s:textfield></td>
+				<td><s:password id="password" name="password"></s:password></td>
 			</tr>
 			<tr>
 				<s:label value="e-mail" name="emailAddresslbl"></s:label>
@@ -34,6 +34,9 @@
 			</tr>
 			<tr>
 				<td><s:submit value="Register" /></td>
+			</tr>
+			<tr>
+				<td><s:a action="welcome">Back to Login</s:a> </td>
 			</tr>
 		</table>
 	</s:form>

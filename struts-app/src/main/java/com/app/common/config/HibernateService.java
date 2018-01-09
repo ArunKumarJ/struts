@@ -9,4 +9,6 @@ public interface HibernateService {
 	public Session getSession();
 
 	public CriteriaBuilder getCriteriaBuilder();
+
+	void closeSession();
 }
